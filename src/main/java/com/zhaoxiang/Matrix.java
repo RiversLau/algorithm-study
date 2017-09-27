@@ -10,17 +10,35 @@ public class Matrix {
 
     public static void main(String[] args) {
 
-        int count = 6;//控制行数
-        final int[][] ary = new int[count][count];
-
+        int count = 6;
         int direction = DOWN;
+
+        int[][] ary = matrixArray(count, direction);
+
+        for (int k = 0; k < ary.length; k++) {
+            for (int j = 0; j < ary[k].length; j++) {
+                System.out.print(ary[k][j] + "\t");
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * 获取二维数组
+     * @param n
+     * @param direction
+     * @return
+     */
+    private static int[][] matrixArray(int n, int direction) {
+
+        int ary[][] = new int[n][n];
 
         int i = 1;
         int row = 0, col = 0;
-        while (i <= count * count) {
+        while (i <= n * n) {
             switch (direction) {
                 case RIGHT:
-                    if (col == count || ary[row][col] > 0) {
+                    if (col == n || ary[row][col] > 0) {
                         row++;
                         col--;
                         direction = DOWN;
@@ -29,7 +47,7 @@ public class Matrix {
                     }
                     break;
                 case DOWN:
-                    if (row == count || ary[row][col] > 0) {
+                    if (row == n || ary[row][col] > 0) {
                         row--;
                         col--;
                         direction = LEFT;
@@ -60,11 +78,6 @@ public class Matrix {
             }
         }
 
-        for (int k = 0; k < ary.length; k++) {
-            for (int j = 0; j < ary[k].length; j++) {
-                System.out.print(ary[k][j] + "\t");
-            }
-            System.out.println();
-        }
+        return ary;
     }
 }
